@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TrailQuest Backend & Agent Service
 
 > Screen-free, audio-guided outdoor exploration running platform powered by open-weight AI (Gemma), Hermes Agent, PostGIS, and OSRM. Built for the Hacktoberfest "Touch Grass" challenge.
@@ -49,3 +50,6 @@ File Usage & Placement Guide
 Where to place: Save this file in the root directory as README.md.
 
 When to use: Use this as the main technical reference and setup guide when configuring containers, environment variables, and worker scripts on a local machine or remote Droplet.
+=======
+# TrailQuest
+>>>>>>> f58cb9eae5b5a30484bf36ce16439868de54570c
