@@ -1,0 +1,11 @@
+﻿.env
+_env
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+.expo/
+data/osrm/
+*.osm.pbf
+.DS_Store

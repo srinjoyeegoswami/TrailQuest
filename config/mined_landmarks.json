@@ -1,0 +1,41 @@
+[
+  {
+    "id": "8b4e9013-2c5f-4c32-af87-1b3e4d5f6a11",
+    "name": "Sodepur Station Road Banyan Tree",
+    "locality": "Sodepur",
+    "city": "North 24 Parganas",
+    "state": "West Bengal",
+    "category": "flora",
+    "target_description": "Massive sprawling banyan tree with aerial prop roots draping over an old brick masonry platform.",
+    "latitude": 22.6980,
+    "longitude": 88.3905,
+    "geofence_radius_meters": 50.0,
+    "source": "mined_osm"
+  },
+  {
+    "id": "8b4e9013-2c5f-4c32-af87-1b3e4d5f6a12",
+    "name": "Roastery Coffee House Exterior",
+    "locality": "Hindustan Park",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "category": "cafe_exterior",
+    "target_description": "Heritage residential mansion facade with checkered verandah tiles and black-framed arched glass windows.",
+    "latitude": 22.5186,
+    "longitude": 88.3614,
+    "geofence_radius_meters": 45.0,
+    "source": "mined_reddit"
+  },
+  {
+    "id": "8b4e9013-2c5f-4c32-af87-1b3e4d5f6a13",
+    "name": "Belgharia Bidhan Park Lake",
+    "locality": "Belgharia",
+    "city": "North 24 Parganas",
+    "state": "West Bengal",
+    "category": "park",
+    "target_description": "Public park reservoir surrounded by paved jogging track, concrete benches, and weeping willow branches.",
+    "latitude": 22.6644,
+    "longitude": 88.3842,
+    "geofence_radius_meters": 50.0,
+    "source": "mined_osm"
+  }
+]

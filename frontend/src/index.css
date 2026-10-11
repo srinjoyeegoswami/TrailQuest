@@ -1,0 +1,210 @@
+@charset "UTF-8";
+@import "tailwindcss";
+
+:root {
+  /* Colors: Fitonist Athletic Slate x Organimo Topo Earth */
+  --bg-deep: #06080a;
+  --bg-canvas: #0b0f13;
+  --bg-surface: #121820;
+  --bg-card: #18212b;
+  --bg-card-hover: #1f2b37;
+  
+  --border-subtle: #202b36;
+  --border-active: #2f3e4d;
+  --border-glow: rgba(61, 184, 107, 0.3);
+
+  --text-main: #f0f4f8;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Brand Accents */
+  --brand-beacon: #ff5416;     /* Summit Blaze / Savage Coach */
+  --brand-beacon-glow: rgba(255, 84, 22, 0.35);
+  --brand-flora: #3db86b;      /* Canopy Green / Friendly Explorer */
+  --brand-flora-glow: rgba(61, 184, 107, 0.35);
+  --brand-emerald: #00e5a3;    /* Electric Emerald Pace */
+  --brand-sky: #38bdf8;        /* Waypoint Water/Ghat */
+  --brand-crimson: #ef4444;    /* Fatigue Alert */
+
+  /* Typography */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows & Glassmorphism */
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  --shadow-elevation: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px 0 var(--border-glow);
+  --glass-surface: rgba(18, 24, 32, 0.75);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(61, 184, 107, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(255, 84, 22, 0.06) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography Utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-active);
+}
+
+/* Topographic & Kinetic Micro-Animations */
+@keyframes pulseRing {
+  0% { transform: scale(0.96); opacity: 0.8; }
+  50% { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(0.96); opacity: 0.8; }
+}
+
+@keyframes beaconSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-pulse-ring {
+  animation: pulseRing 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin-slow {
+  animation: beaconSpin 20s linear infinite;
+}
+
+/* Glassmorphism Card Style */
+.card-fitonist {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card-fitonist:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+}
+
+.card-fitonist-active {
+  border-color: var(--brand-flora);
+  box-shadow: 0 0 20px -5px var(--brand-flora-glow);
+}
+
+/* Athletic Button */
+.btn-athletic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 14px 24px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-beacon) 0%, #e03e00 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 20px -4px var(--brand-beacon-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px -4px var(--brand-beacon-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-flora {
+  background: linear-gradient(135deg, var(--brand-flora) 0%, #2f9453 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 20px -4px var(--brand-flora-glow);
+}
+
+.btn-flora:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px -4px var(--brand-flora-glow);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--border-active);
+}
+
+/* Badges */
+.badge-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+.badge-category.active {
+  background: rgba(61, 184, 107, 0.15);
+  border-color: rgba(61, 184, 107, 0.4);
+  color: var(--brand-flora);
+}

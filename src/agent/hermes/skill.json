@@ -1,0 +1,47 @@
+{
+  "name": "route_and_quest_director",
+  "version": "1.0.0",
+  "description": "Orchestrates spatial route evaluation and visual quest verification for TrailQuest",
+  "tools": [
+    {
+      "name": "evaluate_run_navigation_accuracy",
+      "description": "Calculates Hausdorff distance between planned route and actual GPS trajectory",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "planned_route_id": { "type": "string", "description": "UUID of planned route" },
+          "run_id": { "type": "string", "description": "UUID of the completed run" }
+        },
+        "required": ["planned_route_id", "run_id"]
+      }
+    },
+    {
+      "name": "run_gemma_vision_verifier",
+      "description": "Uses Gemma to evaluate if a submitted image matches the target landmark description",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_path": { "type": "string", "description": "Storage path or base64 of the submitted photo" },
+          "landmark_target_description": { "type": "string", "description": "Target visual description" }
+        },
+        "required": ["image_path", "landmark_target_description"]
+      }
+    },
+    {
+      "name": "tally_quest_score",
+      "description": "Calculates points for distance, adherence, verified landmarks, and social interactions",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "run_id": { "type": "string" },
+          "mode": { "type": "string", "enum": ["running", "walking"] },
+          "total_distance_km": { "type": "number" },
+          "is_route_adherent": { "type": "boolean" },
+          "verified_landmarks_count": { "type": "integer" },
+          "social_interactions_count": { "type": "integer" }
+        },
+        "required": ["run_id", "mode", "total_distance_km", "is_route_adherent"]
+      }
+    }
+  ]
+}

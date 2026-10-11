@@ -1,0 +1,106 @@
+{
+  "version": "1.1.0",
+  "music_ducking_defaults": {
+    "duck_level": 0.15,
+    "fade_out_ms": 400,
+    "fade_in_ms": 800,
+    "pre_speech_delay_ms": 200
+  },
+  "profiles": {
+    "friendly": {
+      "name": "Friendly Explorer",
+      "description": "Grounded, empathetic, practical. Speaks like a training partner who actually ran today.",
+      "music_ducking": {
+        "duck_level": 0.15,
+        "fade_out_ms": 400,
+        "fade_in_ms": 800,
+        "pre_speech_delay_ms": 200
+      },
+      "prompts": {
+        "pace_drop": [
+          "Your pace dropped. Ease your shoulders back and find your breath — you have more in the tank.",
+          "You've slowed down. Check your form, take a breath, keep the legs moving."
+        ],
+        "fatigue_break_2min": [
+          "You're at the halfway point. Take two minutes — walk it out, drink some water, and look at what's around you.",
+          "Halfway done. Two minutes right now. Walk, breathe, reset. This is not optional."
+        ],
+        "fatigue_resume": [
+          "Two minutes are up. Settle into a pace that feels sustainable and keep moving.",
+          "Time's done. Pick it back up — steady rhythm, nothing forced."
+        ],
+        "landmark_proximity": [
+          "{landmark_name} is about 100 meters out. Start looking for {target_description}.",
+          "You're 50 meters from {landmark_name}. Get your phone ready."
+        ],
+        "turn_maneuver": "In {distance} meters, turn {turn_direction} onto {street_name}."
+      }
+    },
+    "full_savage": {
+      "name": "Savage Drill Sergeant",
+      "description": "Dry, sharp, and sarcastic. Roasts with precision, not volume.",
+      "music_ducking": {
+        "duck_level": 0.12,
+        "fade_out_ms": 200,
+        "fade_in_ms": 600,
+        "pre_speech_delay_ms": 100
+      },
+      "prompts": {
+        "pace_drop": [
+          "Your pace just dropped. If this is your version of running, we need to have a conversation.",
+          "That is not slowing down — that is stopping with extra steps. Move."
+        ],
+        "fatigue_break_2min": [
+          "Halfway, and you're already falling apart. Fine — two minutes. Walk it off. Clock is running.",
+          "You get two minutes of walking. That is it. Do not sit down."
+        ],
+        "fatigue_resume": [
+          "Two minutes are done. Break is over. Let's go.",
+          "Done feeling sorry for yourself? Good. Pick up the pace."
+        ],
+        "landmark_proximity": [
+          "{landmark_name} in 100 meters. Get there, take the shot, keep moving.",
+          "There's {landmark_name} at 50 meters. Photo first, then run — in that order."
+        ],
+        "turn_maneuver": "In {distance} meters, turn {turn_direction} onto {street_name}. Stay on pace through the corner."
+      }
+    },
+    "friendly_savage": {
+      "name": "Balanced Pacer",
+      "description": "Performance-gated hybrid. Friendly when on pace, savage when pace drops.",
+      "persona_logic": {
+        "type": "performance_gated",
+        "pace_drop_threshold_percent": 15,
+        "fatigue_break_open_tone": "friendly",
+        "fatigue_break_close_tone": "savage",
+        "landmark_tone": "friendly",
+        "navigation_tone": "neutral"
+      },
+      "music_ducking": {
+        "duck_level": 0.13,
+        "fade_out_ms": 300,
+        "fade_in_ms": 700,
+        "pre_speech_delay_ms": 150
+      },
+      "prompts": {
+        "pace_drop": [
+          "Pace is down. You know what to do — stop coasting and run.",
+          "Your legs are lying to you right now. Push through the next 200 meters and they will stop complaining."
+        ],
+        "fatigue_break_2min": [
+          "Halfway. Take two minutes — walk, breathe, shake it out. You've earned the reset.",
+          "You're at the midpoint. Two minutes of walking right now. Use them."
+        ],
+        "fatigue_resume": [
+          "Two minutes are done. Stop walking and run. We are not done yet.",
+          "Break's over. Let's see if those two minutes actually helped."
+        ],
+        "landmark_proximity": [
+          "{landmark_name} is 100 meters out. Eyes open for {target_description}.",
+          "50 meters to {landmark_name}. Get ready to take the shot."
+        ],
+        "turn_maneuver": "In {distance} meters, turn {turn_direction} onto {street_name}."
+      }
+    }
+  }
+}

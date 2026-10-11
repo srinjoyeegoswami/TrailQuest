@@ -1,0 +1,80 @@
+================================================================================
+TRAILQUEST: MASTER REPOSITORY SETUP & EXECUTION INSTRUCTIONS
+================================================================================
+
+1. PROJECT DIRECTORY SETUP
+--------------------------------------------------------------------------------
+Create the root project folder, config directory, data store, and subdirectories:
+
+    mkdir -p trailquest/docs
+    mkdir -p trailquest/config
+    mkdir -p trailquest/data/landmarks
+    mkdir -p trailquest/src/{config,controllers,db,services/gis,services/routing,services/inference,workers,agent/hermes,agent/tools}
+    mkdir -p ~/.hermes/skills/route_and_quest_director
+    cd trailquest
+
+2. FILE PLACEMENT MAP
+--------------------------------------------------------------------------------
+Save the files in the following exact locations:
+- instruction.txt                      -> trailquest/instruction.txt
+- README.md                            -> trailquest/README.md
+- AGENTS.md                            -> trailquest/AGENTS.md
+- SKILL.md                             -> trailquest/SKILL.md
+- SESSION.md                           -> trailquest/SESSION.md
+- docs/specs.md                        -> trailquest/docs/specs.md
+- docs/todo.md                         -> trailquest/docs/todo.md
+- config/voice_profiles.json           -> trailquest/config/voice_profiles.json
+- data/landmarks/curated_landmarks.json -> trailquest/data/landmarks/curated_landmarks.json
+- data/landmarks/mined_landmarks.json   -> trailquest/data/landmarks/mined_landmarks.json
+
+Also copy the inner JSON tool manifest from SKILL.md into:
+  ~/.hermes/skills/route_and_quest_director/skill.json
+
+3. PREREQUISITES & DEPENDENCY INSTALLATION
+--------------------------------------------------------------------------------
+- Docker & Docker Compose installed and running.
+- Python 3.11+ installed.
+- Install backend dependencies:
+    pip install fastapi uvicorn asyncpg psycopg2-binary shapely pydantic httpx praw requests
+- Install Hermes Agent CLI:
+    curl -fsSL https://hermes-agent.org/install.sh | bash
+
+4. ENVIRONMENT CONFIGURATION
+--------------------------------------------------------------------------------
+Create a .env file in the root directory:
+    DATABASE_URL=postgresql://postgres:postgres@localhost:5432/trailquest
+    OSRM_BASE_URL=http://localhost:5000/route/v1/foot
+    INFERENCE_ENDPOINT_URL=https://inference.digitalocean.com/v1
+    INFERENCE_API_KEY=your_inference_api_key_or_token
+    INFERENCE_MODEL_NAME=gemma-3
+
+5. STEP-BY-STEP SERVICE LAUNCH SEQUENCE
+--------------------------------------------------------------------------------
+Step 1: Spin up PostgreSQL (with PostGIS) and local OSRM foot engine:
+    docker compose up -d
+
+Step 2: Run database schema migrations:
+    python -m src.db.migrate
+
+Step 3: Seed curated baseline landmarks:
+    python -m src.workers.landmark_seeder --file=data/landmarks/curated_landmarks.json
+
+Step 4: Seed and mine dynamic regional landmarks (OpenStreetMap + Reddit):
+    # Harvest landmarks for your district (e.g., Kolkata / North 24 Parganas)
+    python -m src.workers.india_harvester --mode=osm --district="Kolkata" --state="West Bengal" --out=data/landmarks/mined_landmarks.json
+    # Scrape community recommendations
+    python -m src.workers.india_harvester --mode=reddit --limit=50 --out=data/landmarks/mined_landmarks.json
+
+Step 5: Launch backend API server:
+    uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+Step 6: Test core endpoints:
+    - Route Planner: POST http://localhost:8000/api/v1/routes/plan-quest-run
+    - Offline Sync:  POST http://localhost:8000/api/v1/sync/run-payload
+
+6. POST-BACKEND TRANSITION DIRECTIVE
+--------------------------------------------------------------------------------
+Once the backend and agent verification pipelines run cleanly without errors,
+transition to the frontend phase by requesting the mobile client components
+and UI/UX prompts.
+================================================================================

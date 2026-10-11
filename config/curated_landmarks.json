@@ -1,0 +1,54 @@
+[
+  {
+    "id": "7a3f8902-1b4e-4b21-9e76-0a2d3c4e5f01",
+    "name": "Victoria Memorial North Gate",
+    "locality": "Maidan",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "category": "scenic_view",
+    "target_description": "White Makrana marble colonial monument gates surrounded by lush green lawns and iron railing.",
+    "latitude": 22.5448,
+    "longitude": 88.3426,
+    "geofence_radius_meters": 60.0,
+    "source": "curated"
+  },
+  {
+    "id": "7a3f8902-1b4e-4b21-9e76-0a2d3c4e5f02",
+    "name": "Rabindra Sarobar Lake Promenade",
+    "locality": "Southern Avenue",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "category": "park",
+    "target_description": "Tranquil paved lakeside promenade bordered by towering ancient mahogany trees and water lily patches.",
+    "latitude": 22.5122,
+    "longitude": 88.3637,
+    "geofence_radius_meters": 50.0,
+    "source": "curated"
+  },
+  {
+    "id": "7a3f8902-1b4e-4b21-9e76-0a2d3c4e5f03",
+    "name": "Central Park Butterfly Garden",
+    "locality": "Salt Lake Sector 1",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "category": "flora",
+    "target_description": "Vibrant flowering shrub garden with blooming marigolds, bougainvillea, and wooden nature trail signboards.",
+    "latitude": 22.5855,
+    "longitude": 88.4140,
+    "geofence_radius_meters": 50.0,
+    "source": "curated"
+  },
+  {
+    "id": "7a3f8902-1b4e-4b21-9e76-0a2d3c4e5f04",
+    "name": "Panihati Ferry Ghat",
+    "locality": "Sodepur",
+    "city": "Kolkata Suburbs",
+    "state": "West Bengal",
+    "category": "scenic_view",
+    "target_description": "Historic brick river ghat steps leading into the Hooghly River with traditional wooden boats anchored nearby.",
+    "latitude": 22.6942,
+    "longitude": 88.3695,
+    "geofence_radius_meters": 55.0,
+    "source": "curated"
+  }
+]
